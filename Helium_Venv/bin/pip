@@ -1,4 +1,4 @@
-#!/Users/scottsullivan/Documents/myCoding/crypto/helium/Helium_Venv/bin/python3.9
+#!/Users/scottsullivan/Documents/myCoding/crypto/helium/Helium_Venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
