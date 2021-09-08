@@ -184,5 +184,41 @@ def validate_address(address: 'string') -> bool:
     Validates a Helium address using the four character checksum appended
     to the address. Receives a base58 encoded address
     """
+    # Econde the string address as a seq of bytes
+    addr = address.encode('ascii')
+    # Reverse the base58 encoding of the address
+    addr = base58.b58decode(addr)
+    # convert the address into a string
+    addr = addr.decode('ascii')
 
-    
+    # Length must be RIPEMD160 hash length + length of checksum + 1
+    if (len(addr) != 45): return False
+    if (addr[0] != '1'): return False
+
+    # Extract the checksum
+    extracted_checksum = addr[len(addr) - 4]
+
+    # Extract the checksum out of addr and compute the SHA256 hash of remaining addr string
+    tmp = addr[:len(addr)-4]
+    tmp = make_SHA256_hash(tmp)
+
+    # Get the computed checksum from tmp
+    checksum = tmp[len(tmp) -4]
+
+    if extracted_checksum == checksum: return True
+
+    return False
+
+def make_uuid() -> 'string':
+    """
+    Makes a universally unique 256 bit id encoded as a HEX string that is
+    used as a transaction identifier. Uses the Python library secrets modeule to
+    generate a cryptographically strong random 32 byte string encoded as a HEX
+    string (64 bytes)
+    """
+    id = secrets.token_hex(32)
+    return id
+
+
+
+
