@@ -16,7 +16,7 @@ from Crypto.PublicKey import ECC
 from Crypto.PublicKey import DSA
 from Crypto.Signature import DSS
 from Crypto.Hash import SHA256
-from Crypto.Hash import RIPEMD16
+from Crypto.Hash import RIPEMD160
 
 import base58
 import secrets
@@ -28,8 +28,7 @@ import logging
 """
     log debugging messages to the file debug.log
 """
-logging.basicConfig(filename="debug.log", filemode="w", \
-    format='%(asctime)s:%(levelname)s:%(message)s', 
+logging.basicConfig(filename="debug.log",filemode="w", format='%(asctime)s:%(levelname)s:%(message)s', 
     level=logging.DEBUG)
 
 def make_SHA256_hash(msg: 'string') -> 'string':
@@ -111,7 +110,7 @@ def sign_message(private_key: 'string', message: 'string') -> 'string':
     # Import the PEM format private key
     priv_key = ECC.import_key(private_key)
     #convert message to byte stream & compute SHA256 message digest
-    bstr = bytes(message, 'asciii')
+    bstr = bytes(message, 'ascii')
     hash = SHA256.new(bstr)
 
     # Create a digital signature object from the private key
