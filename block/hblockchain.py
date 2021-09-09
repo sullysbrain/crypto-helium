@@ -208,5 +208,13 @@ def validate_block(block: 'dictionary') -> 'bool':
         return False
     return True
 
-
- 
+def merkle_root(buffer: 'List', start: 'bool' = False) -> 'bool or string':
+    """
+    merkle_tree: computes the merkle root for a list of transactions
+    Receives a list of transactions and a boolean flag to indicate
+    whether the function has been called for the first time or 
+    whether it is a recursive call from within the function.
+    Returns the root of the merkle tree or False if there is an error
+    """
+    pass
+    
