@@ -14,6 +14,7 @@ log debugging messages to the file debug.log
 """
 logging.basicConfig(filename='debug.log',filemode='w',\
     format='%(asctime)s:%(levelname)s:%(message)s',level=logging.DEBUG)
+
 """
 A block is a Python dictionary that has the following
 structure. The type of an attribute is denoted in angle delimiters.
